@@ -1,0 +1,67 @@
+SELECT  ALU_NOMBRE,  ALU_APELLIDO, ALU_DIRECCION
+FROM   alumnos 
+
+
+
+SELECT PROF_NOMBRE,PROF_APELLIDO,PROF_DNI,PROF_DIRECCION
+FROM profesores
+WHERE PROF_NOMBRE <> "nombre_test"
+
+
+
+SELECT MAT_NOMBRE
+FROM materias
+WHERE MAT_NOMBRE <> "Materia_test" AND MAT_NOMBRE <> "materia 1_test" 
+
+
+
+SELECT MAT_NOMBRE, CUR_ANIO, CUR_DESCRIPCION
+FROM materias, cursos  materias.CUR_ID = cursos.CUR_ID
+AND MAT_NOMBRE <> "Materia_test"
+AND MAT_NOMBRE <> "materia 1_test"
+AND CUR_ANIO <> 2018
+AND CUR_ANIO <> 10
+
+
+
+SELECT ALU_NOMBRE, ALU_APELLIDO, PART_NOMBRE
+FROM alumnos
+inner join partidos on alumnos.PART_ID = partidos.PART_ID
+
+
+
+
+SELECT alumnos.ALU_NOMBRE, alumnos.ALU_APELLIDO, alumnos.ALU_DNI, provincias.PROV_NOMBRE
+FROM alumnos
+INNER JOIN provincias ON alumnos.PROV_ID = provincias.PROV_ID 
+
+
+
+select TUR_DESCRIPCION,DIV_DESCRIPCION, PROF_NOMBRE, PROF_APELLIDO
+FROM turnos 
+inner join comisiones on turnos.TUR_ID = comisiones.TUR_ID
+inner join division on comisiones.DIV_ID = division.DIV_ID
+inner join profesores on comisiones.PROF_ID = profesores.PROF_ID
+
+
+
+select CUR_ANIO,CUR_DESCRIPCION,turnos.TUR_DESCRIPCION, DIV_DESCRIPCION, materias.MAT_NOMBRE
+from cursos
+inner join comisiones on cursos.CUR_ID = comisiones.CUR_ID
+inner join turnos on comisiones.TUR_ID = turnos.TUR_ID
+inner join division on comisiones.DIV_ID = division.DIV_ID
+inner join materias on comisiones.MAT_ID = materias.MAT_ID
+
+
+
+select MAT_NOMBRE, TEM_DESCRIPCION, ITEM_DESCRIPCION
+from materias
+inner join temarios on materias.TEM_ID = temarios.TEM_ID
+inner join itemsdetemario on temarios.TEM_ID = itemsdetemario.TEM_ID
+
+
+
+select MOD_DESCRIPCION, MAT_NOMBRE, CUR_ANIO, CUR_DESCRIPCION
+from modulos
+inner join materias on modulos.MAT_ID = materias.MAT_ID
+inner join cursos on materias.CUR_ID = cursos.CUR_ID

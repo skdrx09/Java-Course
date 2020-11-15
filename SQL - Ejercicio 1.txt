@@ -1,0 +1,69 @@
+create table provincias(
+    PRO_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    PRO_DESCRIPCION VARCHAR(45) NOT NULL,
+    PRIMARY KEY(PRO_ID)
+); 
+ 
+
+create table partidos(
+    PAR_ID int unsigned not null auto_increment,
+    PRO_ID int unsigned not null,
+    PAR_DESCRIPCION varchar(45) not null, 
+    primary key (PAR_ID),
+    CONSTRAINT FK_partidos_provincia FOREIGN KEY FK_partidos_provincia (PRO_ID)
+        references provincias (PRO_ID)
+        on delete restrict
+        on update restrict
+); 
+
+insert into provincias(PRO_DESCRIPCION) values ('Buenos Aires');
+insert into provincias(PRO_DESCRIPCION) values ('Córdoba');
+insert into provincias(PRO_DESCRIPCION) values ('Entre Ríos');
+insert into provincias(PRO_DESCRIPCION) values ('Mendoza');
+
+
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(1, 'Alberti');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(1, 'La Matanza');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(1, 'Morón');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(1, 'Almirante Brown');
+
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(2, 'San Alberto');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(2, 'Capital');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(2, 'Río Cuarto');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(2, 'Juárez Celman');
+
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(3, 'Tala');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(3, 'Uruguay');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(3, 'Paraná');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(3, 'Gualeguay');
+
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(4, 'Capital');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(4, 'San Carlos');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(4, 'San Rafaeol');
+insert into partidos(PRO_ID, PAR_DESCRIPCION)VALUES(4, 'Luján');
+
+
+describe partidos;
+DESCRIBE provincias; 
+
+select * from provincias 
+select * from partidos
+
+delete from provincias 
+where PRO_ID=1
+
+delete from provincias 
+where PRO_ID=5
+
+delete from partidos
+where PRO_ID=4
+delete from provincias
+where PRO_ID=4
+
+update provincias set PRO_DESCRIPCION='bsas' where PRO_ID=1
+
+update provincias set PRO_DESCRIPCION='buenos mates' where PRO_ID=3
+
+update partidos set PAR_DESCRIPCION='el mejor' where PAR_ID=1
+
+update provincias set PRO_DESCRIPCION='cba' where PRO_ID=2
